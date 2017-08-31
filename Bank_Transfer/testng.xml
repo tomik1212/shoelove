@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="Suite" thread-count="10" verbose="10">-->
+<suite name="Suite" verbose="2">
+  <test name="Bank Payment">
+    <classes>
+      <class name="ProcesZakupowy.Bank_Payment"/>
+    </classes>
+  </test> <!-- Test -->
+  
+   <test name="Payu Payment">
+    <classes>
+          <class name="ProcesZakupowy.Payu_Payment"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
