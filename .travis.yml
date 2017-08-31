@@ -1,0 +1,40 @@
+# Sample .travis.yml file:
+language: java
+
+rvm: # the Ruby versions to be used
+  - 3.4.0
+jdk:
+  - oraclejdk8
+before_install:
+  - sudo apt-get install ruby
+  - gem install selenium-webdriver
+  - sudo apt-get install junit
+  - sudo apt-get install ant-optional
+  - sudo apt-get update
+  - sudo apt-get install firefox
+  - sudo apt install ruby-rack
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.17.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
+
+addons:
+ firefox: '54.0.1'
+    
+before_script:
+   - export DISPLAY=:99.0
+   - sh -e /etc/init.d/xvfb start
+   - export CHROME_BIN=chromium-browser
+   - sleep 3
+
+#before_script:
+  #- "sh -e /etc/init.d/xvfb stop"
+  # - "export DISPLAY=:99.0"
+  # - "sh -e /etc/init.d/xvfb start"
+  #- export PATH=$PATH:/path/to/geckodriver
+  
+script: 
+
+- java -cp bin/:lib/* org.testng.TestNG testng.xml
+
+- "sh -e /etc/init.d/xvfb stop"
